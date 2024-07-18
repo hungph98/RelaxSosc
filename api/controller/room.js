@@ -76,6 +76,30 @@ export const updateRoom = async (req, res, next) => {
 };
 
 /**
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise<void>}
+ */
+export const updateRoomAvailability = async (req, res, next) => {
+    try {
+        await Room.updateOne(
+            {"roomNumbers._id": req.params.id},
+            {
+                $push: {
+                    "roomNumbers.$.unavailableDates": req.body.dates
+                }
+            }
+        );
+        res.status(200).json("Room has been updated successfully.");
+
+    } catch (err) {
+        next(err);
+    }
+}
+
+/**
  * Delete Room
  * @param req
  * @param res

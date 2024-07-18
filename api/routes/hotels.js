@@ -6,6 +6,7 @@ import {
     deleteHotel,
     getAllHotel,
     getHotelById,
+    getHotelRooms,
     updateHotel
 } from "../controller/hotel.js";
 import {verifyAdmin} from "../utils/verifyToken.js";
@@ -46,6 +47,11 @@ router.get("/count-by-city", countByCity);
  * Count By Type
  */
 router.get("/count-by-type", countByType)
+
+/**
+ * Get Hotel Room
+ */
+router.get("/rooms/:id", getHotelRooms);
 
 
 
