@@ -1,22 +1,22 @@
-import "./login.css"
+import "./login.scss"
+import axios from "axios"
+import {AuthContext} from "../../context/AuthContext";
 import {useContext, useState} from "react";
-import {AuthContext} from "../../../context/AuthContext";
-import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-const Login = () => {
+const AdminLogin = () => {
     const [credentials, setCredentials] = useState({
         username: undefined,
         password: undefined
     });
 
-    const { user, loading, error, dispatch} = useContext(AuthContext);
+    const {loading, error, dispatch} = useContext(AuthContext);
 
     const navigate = useNavigate();
     const handleChange = (e) => {
         setCredentials((prev) => ({
             ...prev,
-            [e.target.id] : e.target.value
+            [e.target.id]: e.target.value
         }))
     };
 
@@ -25,14 +25,19 @@ const Login = () => {
         dispatch({type: "LOGIN_START"})
 
         try {
-            const res = await axios.post("/v1/auth/login", credentials);
-            console.log(res);
-            dispatch({
-                type: "LOGIN_SUCCESS",
-                payload: res.data.details
-            })
-            navigate("/")
-
+            const res = await axios.post("http://localhost:8080/api/v1/auth/login", credentials);
+            if (res.data.isAdmin) {
+                dispatch({
+                    type: "LOGIN_SUCCESS",
+                    payload: res.data.details,
+                })
+                navigate("/")
+            } else {
+                dispatch({
+                    type: "LOGIN_FAILURE",
+                    payload: error.response.data
+                })
+            }
         } catch (error) {
             dispatch({
                 type: "LOGIN_FAILURE",
@@ -64,7 +69,7 @@ const Login = () => {
                 {error && <span>{error.message}</span>}
             </div>
         </div>
-    );
+    )
 }
 
-export default Login
+export default AdminLogin

@@ -24,17 +24,20 @@ router.get("/:id", getRoomById);
 /**
  * Create
  */
-router.post("/:hotelid",verifyAdmin, createNewRoom);
+router.post("/:hotelid", createNewRoom);
+// router.post("/:hotelid",verifyAdmin, createNewRoom);
 
 /**
  * Update
  */
-router.put("/:id",verifyAdmin, updateRoom);
+router.put("/:id", updateRoom);
+// router.put("/:id",verifyAdmin, updateRoom);
 router.put("/availability/:id", updateRoomAvailability);
 
 /**
  * Delete
  */
-router.delete('/:id/:hotelid',verifyAdmin, deleteRoom);
+router.delete('/:id/:hotelid', deleteRoom);
+// router.delete('/:id/:hotelid',verifyAdmin, deleteRoom);
 
 export default router
