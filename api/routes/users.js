@@ -28,21 +28,25 @@ const router = express.Router();
 /**
  * GetAll
  */
-router.get('/',verifyUser, getAllUser);
+router.get('/', getAllUser);
+// router.get('/',verifyAdmin, getAllUser);
 
 /**
  * GetById
  */
-router.get('/:id',verifyUser, getUserById);
+router.get('/:id', getUserById);
+// router.get('/:id',verifyUser, getUserById);
 
 /**
  * Update
  */
-router.put('/:id',verifyUser, updateUser);
+router.put('/:id', updateUser);
+// router.put('/:id',verifyUser, updateUser);
 
 /**
  * Delete
  */
-router.delete('/:id',verifyAdmin, deleteUser);
+router.delete('/:id', deleteUser);
+// router.delete('/:id',verifyAdmin, deleteUser);
 
 export default router
