@@ -2,8 +2,8 @@ import Home from "./pages/home/Home";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/user/New";
-import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
-import {hotelInputs, productInputs, roomInputs, userInputs} from "./formSource";
+import {BrowserRouter, Routes, Route, Navigate, useLocation} from "react-router-dom";
+import {hotelInputs, roomInputs, userInputs} from "./formSource";
 import "./style/dark.scss";
 import {useContext} from "react";
 import {DarkModeContext} from "./context/darkModeContext";
@@ -43,7 +43,7 @@ function App() {
                                     <List columns={userColumns}/>
                                 </ProtectedRoute>
                             }/>
-                            <Route path=":userId" element={
+                            <Route path="users-detail/:userId" element={
                                 <ProtectedRoute>
                                     <Single/>
                                 </ProtectedRoute>
@@ -62,7 +62,7 @@ function App() {
                                     <List columns={hotelColumns}/>
                                 </ProtectedRoute>
                             }/>
-                            <Route path=":hotelId" element={
+                            <Route path="hotels-detail/:hotelId" element={
                                 <ProtectedRoute>
                                     <Single/>
                                 </ProtectedRoute>
@@ -82,7 +82,7 @@ function App() {
                                     <List columns={roomColumns}/>
                                 </ProtectedRoute>
                             }/>
-                            <Route path=":roomId" element={
+                            <Route path="rooms-detail/:roomId" element={
                                 <ProtectedRoute>
                                     <Single/>
                                 </ProtectedRoute>

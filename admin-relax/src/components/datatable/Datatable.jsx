@@ -17,7 +17,7 @@ const Datatable = ({columns}) => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8080/api/v1/users/${id}`)
+            await axios.delete(`http://localhost:8080/api/v1/${path}/${id}`)
         } catch (err) {
             setList(list.filter((item) => item._id !== id))
         }
@@ -31,7 +31,7 @@ const Datatable = ({columns}) => {
             renderCell: (params) => {
                 return (
                     <div className="cellAction">
-                        <Link to="/users/test" style={{textDecoration: "none"}}>
+                        <Link to={`/${path}/${path}-detail/${params.row._id}`} style={{textDecoration: "none"}}>
                             <div className="viewButton">View</div>
                         </Link>
                         <div
