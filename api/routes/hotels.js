@@ -21,7 +21,7 @@ router.get("/", getAllHotel);
 /**
  * GetById
  */
-router.get("/find/:id", getHotelById);
+router.get("/:id", getHotelById);
 
 /**
  * Create
